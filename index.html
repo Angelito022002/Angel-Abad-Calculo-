@@ -123,9 +123,7 @@ function renderHistorial(filtro = "Todas") {
         Total = ${h.total2}<br><br>
 
         Comentario:<br>
-        <textarea onchange="editarComentario(${i}, this.value)">
-          ${h.comentario || ""}
-        </textarea>
+        <textarea onchange="editarComentario(${i}, this.value)">${h.comentario || ""}</textarea>
         <br>
         <button onclick="borrarRegistro(${i})">🗑 Borrar</button>
 
