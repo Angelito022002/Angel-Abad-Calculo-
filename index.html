@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programa Ángel</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#020617">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #020617;
+      color: #fff;
+      padding: 20px;
+    }
+    .box {
+      max-width: 420px;
+      margin: auto;
+      background: #0f172a;
+      padding: 20px;
+      border-radius: 14px;
+    }
+    h1 { text-align: center; }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      background: #22c55e;
+      font-weight: bold;
+    }
+    .res {
+      margin-top: 15px;
+      background: #020617;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h1>Programa Ángel</h1>
+
+    <input type="date" id="fecha">
+    <input type="number" id="numero" placeholder="Número (ej: 32)">
+    <button onclick="calcular()">Calcular</button>
+
+    <div class="res" id="resultado"></div>
+  </div>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+
+// --- LÓGICA EXACTA ---
+function sumarFecha(fecha) {
+  return [...fecha].filter(c => c >= '0' && c <= '9')
+    .reduce((a,b)=>a+Number(b),0);
+}
+
+function dividirYSumar(num, divisor=1220, decimales=13, invertido=false) {
+  let resultado = invertido ? (num/divisor) : (divisor/num);
+  let str = resultado.toFixed(decimales);
+  let suma = [...str.split(".")[1]].reduce((a,b)=>a+Number(b),0);
+  return {str, suma};
+}
+
+function calcular() {
+  let fecha = document.getElementById("fecha").value;
+  let numero = Number(document.getElementById("numero").value);
+
+  if (!fecha || !numero) {
+    alert("Completa todos los campos");
+    return;
+  }
+
+  let sumaFecha = sumarFecha(fecha);
+  let r1 = dividirYSumar(numero,1220,13,true);
+  let r2 = dividirYSumar(numero,1220,13,false);
+
+  document.getElementById("resultado").innerHTML = `
+  Fecha → suma = ${sumaFecha}<br><br>
+
+  ${numero} ÷ 1220 = ${r1.str}<br>
+  Suma decimales = ${r1.suma}<br>
+  Total = ${sumaFecha + r1.suma}<br><br>
+
+  1220 ÷ ${numero} = ${r2.str}<br>
+  Suma decimales = ${r2.suma}<br>
+  Total = ${sumaFecha + r2.suma}
+  `;
+}
+</script>
+</body>
+</html>
