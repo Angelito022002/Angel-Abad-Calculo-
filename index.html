@@ -90,6 +90,20 @@ function guardarHistorial(registro) {
   localStorage.setItem("historial_calculos", JSON.stringify(historial));
 }
 
+function borrarRegistro(index) {
+  let historial = obtenerHistorial();
+  if (!confirm("¿Seguro que quieres borrar este registro?")) return;
+  historial.splice(index, 1);
+  localStorage.setItem("historial_calculos", JSON.stringify(historial));
+  renderHistorial();
+}
+
+function editarComentario(index, nuevo) {
+  let historial = obtenerHistorial();
+  historial[index].comentario = nuevo;
+  localStorage.setItem("historial_calculos", JSON.stringify(historial));
+}
+
 function renderHistorial(filtro = "Todas") {
   let historial = obtenerHistorial();
   let cont = document.getElementById("historial");
@@ -97,6 +111,11 @@ function renderHistorial(filtro = "Todas") {
 
   cont.innerHTML = "";
   filtros.innerHTML = "";
+
+  if (historial.length === 0) {
+    cont.innerHTML = "<p>No hay registros.</p>";
+    return;
+  }
 
   let loterias = [...new Set(historial.map(h => h.loteria))];
 
@@ -108,50 +127,28 @@ function renderHistorial(filtro = "Todas") {
   });
 
   historial
-  .filter(h => filtro === "Todas" || h.loteria === filtro)
-  .forEach((h, i) => {
+    .filter(h => filtro === "Todas" || h.loteria === filtro)
+    .forEach((h, i) => {
+      cont.innerHTML += `
+        <div class="res">
+          <b>${h.loteria}</b> – ${h.fecha}<br><br>
 
-    cont.innerHTML += `
-      <div class="res">
+          ${h.numero} ÷ ${h.divisor} = ${h.res1}<br>
+          Total = ${h.total1}<br><br>
 
-        <b>${h.loteria}</b> – ${h.fecha}<br><br>
+          ${h.divisor} ÷ ${h.numero} = ${h.res2}<br>
+          Total = ${h.total2}<br><br>
 
-        ${h.numero} ÷ ${h.divisor} = ${h.res1}<br>
-        Total = ${h.total1}<br><br>
-
-        ${h.divisor} ÷ ${h.numero} = ${h.res2}<br>
-        Total = ${h.total2}<br><br>
-
-        Comentario:<br>
-        <textarea onchange="editarComentario(${i}, this.value)">${h.comentario || ""}</textarea>
-        <br>
-        <button onclick="borrarRegistro(${i})">🗑 Borrar</button>
-
-      </div>
-    `;
-});
-
-function editarComentario(index, nuevo) {
-  function borrarRegistro(index) {
-  let historial = obtenerHistorial();
-
-  if (!confirm("¿Seguro que quieres borrar este registro?")) return;
-
-  historial.splice(index, 1);
-  localStorage.setItem("historial_calculos", JSON.stringify(historial));
-  renderHistorial();
-}
-  let historial = obtenerHistorial();
-  historial[index].comentario = nuevo;
-  localStorage.setItem("historial_calculos", JSON.stringify(historial));
+          Comentario:<br>
+          <textarea onchange="editarComentario(${i}, this.value)">${h.comentario || ""}</textarea>
+          <br>
+          <button onclick="borrarRegistro(${i})">🗑 Borrar</button>
+        </div>
+      `;
+    });
 }
 
-  
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
-
-// --- LÓGICA EXACTA ---
+// --- LÓGICA ---
 function sumarFecha(fecha) {
   return [...fecha].filter(c => c >= '0' && c <= '9')
     .reduce((a,b)=>a+Number(b),0);
@@ -181,13 +178,9 @@ function calcular() {
 
   document.getElementById("resultado").innerHTML = `
     Fecha → suma = ${sumaFecha}<br><br>
-
     ${numero} ÷ 1220 = ${r1.str}<br>
-    Suma decimales = ${r1.suma}<br>
     Total = ${sumaFecha + r1.suma}<br><br>
-
     1220 ÷ ${numero} = ${r2.str}<br>
-    Suma decimales = ${r2.suma}<br>
     Total = ${sumaFecha + r2.suma}
   `;
 
