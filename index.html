@@ -130,6 +130,15 @@ function renderHistorial(filtro = "Todas") {
 }
 
 function editarComentario(index, nuevo) {
+  function borrarRegistro(index) {
+  let historial = obtenerHistorial();
+
+  if (!confirm("¿Seguro que quieres borrar este registro?")) return;
+
+  historial.splice(index, 1);
+  localStorage.setItem("historial_calculos", JSON.stringify(historial));
+  renderHistorial();
+}
   let historial = obtenerHistorial();
   historial[index].comentario = nuevo;
   localStorage.setItem("historial_calculos", JSON.stringify(historial));
