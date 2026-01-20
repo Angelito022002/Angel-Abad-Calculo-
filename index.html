@@ -93,9 +93,11 @@ function dividirYSumar(num, divisor=1220, decimales=13, invertido=false) {
 function calcular() {
   let fecha = document.getElementById("fecha").value;
   let numero = Number(document.getElementById("numero").value);
+  let loteria = document.getElementById("loteria").value || "Sin nombre";
+  let comentario = document.getElementById("comentario").value;
 
   if (!fecha || !numero) {
-    alert("Completa todos los campos");
+    alert("Completa los campos");
     return;
   }
 
@@ -104,16 +106,31 @@ function calcular() {
   let r2 = dividirYSumar(numero,1220,13,false);
 
   document.getElementById("resultado").innerHTML = `
-  Fecha → suma = ${sumaFecha}<br><br>
+    Fecha → suma = ${sumaFecha}<br><br>
 
-  ${numero} ÷ 1220 = ${r1.str}<br>
-  Suma decimales = ${r1.suma}<br>
-  Total = ${sumaFecha + r1.suma}<br><br>
+    ${numero} ÷ 1220 = ${r1.str}<br>
+    Suma decimales = ${r1.suma}<br>
+    Total = ${sumaFecha + r1.suma}<br><br>
 
-  1220 ÷ ${numero} = ${r2.str}<br>
-  Suma decimales = ${r2.suma}<br>
-  Total = ${sumaFecha + r2.suma}
+    1220 ÷ ${numero} = ${r2.str}<br>
+    Suma decimales = ${r2.suma}<br>
+    Total = ${sumaFecha + r2.suma}
   `;
+
+  guardarHistorial({
+    loteria,
+    fecha,
+    numero,
+    divisor: 1220,
+    sumaFecha,
+    res1: r1.str,
+    suma1: r1.suma,
+    total1: sumaFecha + r1.suma,
+    res2: r2.str,
+    suma2: r2.suma,
+    total2: sumaFecha + r2.suma,
+    comentario
+  });
 }
 </script>
 </body>
