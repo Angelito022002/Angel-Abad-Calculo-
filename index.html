@@ -47,14 +47,30 @@
 
 <body>
   <div class="box">
-    <h1>Programa Ángel</h1>
+ <h1>Programa Ángel</h1>
 
-    <input type="date" id="fecha">
-    <input type="number" id="numero" placeholder="Número (ej: 32)">
-    <button onclick="calcular()">Calcular</button>
+<div>
+  <button onclick="mostrarVista('calc')">Calcular</button>
+  <button onclick="mostrarVista('hist')">Historial</button>
+</div>
 
-    <div class="res" id="resultado"></div>
-  </div>
+<!-- VISTA CALCULADORA -->
+<div id="vista-calc">
+  <input type="text" id="loteria" placeholder="Lotería (ej: Real)">
+  <input type="date" id="fecha">
+  <input type="number" id="numero" placeholder="Número (ej: 32)">
+  <textarea id="comentario" placeholder="Comentario (opcional)"></textarea>
+
+  <button onclick="calcular()">Calcular</button>
+
+  <div class="res" id="resultado"></div>
+</div>
+
+<!-- VISTA HISTORIAL -->
+<div id="vista-hist" style="display:none">
+  <div id="filtros"></div>
+  <div id="historial"></div>
+</div>
 
 <script>
 if ('serviceWorker' in navigator) {
