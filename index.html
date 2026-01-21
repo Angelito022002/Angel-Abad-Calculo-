@@ -207,8 +207,8 @@ let usarComentario = document.getElementById("optComentario").checked;
   }
 
   let sumaFecha = sumarFecha(fecha);
-  let r1 = dividirYSumar(numero,1220,13,true);
-  let r2 = dividirYSumar(numero,1220,13,false);
+  let r1 = dividirYSumar(numero,1220,13,usarEnteros,true);
+let r2 = dividirYSumar(numero,1220,13,usarEnteros,false);
 
   document.getElementById("resultado").innerHTML = `
     Fecha → suma = ${sumaFecha}<br><br>
