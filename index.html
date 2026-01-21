@@ -212,6 +212,8 @@ function dividirYSumar(num, divisor=1220, decimales=13, incluirEnteros=false, in
 function calcular() {
   let fecha = document.getElementById("fecha").value;
   let numero = Number(document.getElementById("numero").value);
+  let decimales = Number(document.getElementById("decimales").value) || 13;
+let divisor = Number(document.getElementById("divisor").value) || 1220;
   let loteria = document.getElementById("loteria").value || "Sin nombre";
   let comentario = document.getElementById("comentario").value;
   let usarEnteros = document.getElementById("optEnteros").checked;
