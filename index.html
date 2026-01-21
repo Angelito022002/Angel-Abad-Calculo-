@@ -230,12 +230,12 @@ if (!usarComentario) comentario = "";
   let r2 = dividirYSumar(numero, divisor, decimales, usarEnteros, false);
 
   document.getElementById("resultado").innerHTML = `
-    Fecha → suma = ${sumaFecha}<br><br>
-    ${numero} ÷ 1220 = ${r1.str}<br>
-    Total = ${sumaFecha + r1.suma}<br><br>
-    1220 ÷ ${numero} = ${r2.str}<br>
-    Total = ${sumaFecha + r2.suma}
-  `;
+  Fecha → suma = ${sumaFecha}<br><br>
+  ${numero} ÷ ${divisor} = ${r1.str}<br>
+  Total = ${sumaFecha + r1.suma}<br><br>
+  ${divisor} ÷ ${numero} = ${r2.str}<br>
+  Total = ${sumaFecha + r2.suma}
+`;
 
     if (guardar) {
     guardarHistorial({
