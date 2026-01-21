@@ -198,7 +198,9 @@ function calcular() {
   let numero = Number(document.getElementById("numero").value);
   let loteria = document.getElementById("loteria").value || "Sin nombre";
   let comentario = document.getElementById("comentario").value;
-
+  let usarEnteros = document.getElementById("optEnteros").checked;
+let guardar = document.getElementById("optGuardar").checked;
+let usarComentario = document.getElementById("optComentario").checked;
   if (!fecha || !numero) {
     alert("Completa los campos");
     return;
