@@ -155,7 +155,8 @@ function renderHistorial(filtro = "Todas") {
       cont.innerHTML += `
         <div class="res">
           <b>${h.loteria}</b> – ${h.fecha}<br><br>
-
+          <small>Modo: ${h.modoSuma}</small><br><br>
+          
           ${h.numero} ÷ ${h.divisor} = ${h.res1}<br>
           Total = ${h.total1}<br><br>
 
