@@ -8,41 +8,126 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#020617">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #020617;
-      color: #fff;
-      padding: 20px;
-    }
-    .box {
-      max-width: 420px;
-      margin: auto;
-      background: #0f172a;
-      padding: 20px;
-      border-radius: 14px;
-    }
-    h1 { text-align: center; }
-    input, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
-    }
-    button {
-      background: #22c55e;
-      font-weight: bold;
-    }
-    .res {
-      margin-top: 15px;
-      background: #020617;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-  </style>
+ <style>
+:root {
+  --bg: #020617;
+  --card: #0f172a;
+  --card-dark: #020617;
+  --primary: #22c55e;
+  --secondary: #38bdf8;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 16px;
+}
+
+.box {
+  max-width: 440px;
+  margin: auto;
+  background: var(--card);
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.4);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 1.4rem;
+}
+
+input, textarea, button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  background: var(--card-dark);
+  color: var(--text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+button {
+  background: var(--primary);
+  color: #052e16;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .05s, opacity .2s;
+}
+
+button:hover {
+  opacity: .9;
+}
+
+button:active {
+  transform: scale(.98);
+}
+
+.res {
+  margin-top: 16px;
+  background: var(--card-dark);
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.res b {
+  color: var(--secondary);
+}
+
+small {
+  color: var(--muted);
+}
+
+label {
+  font-size: 14px;
+  color: var(--text);
+}
+
+#filtros button {
+  margin-top: 8px;
+  background: #1e293b;
+  color: var(--text);
+}
+
+#filtros button:hover {
+  background: #334155;
+}
+
+#vista-hist textarea {
+  background: #020617;
+}
+
+#vista-hist button {
+  background: #ef4444;
+  color: #fff;
+  margin-top: 8px;
+}
+
+#vista-hist button:hover {
+  background: #dc2626;
+}
+</style>
 </head>
 
 <body>
