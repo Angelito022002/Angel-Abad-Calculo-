@@ -231,9 +231,13 @@ if (!usarComentario) comentario = "";
 
   document.getElementById("resultado").innerHTML = `
   Fecha → suma = ${sumaFecha}<br><br>
-  ${numero} ÷ ${divisor} = ${r1.str}<br>
+
+  División: ${numero} ÷ ${divisor} = ${r1.str}<br>
+  Suma dígitos decimales = ${r1.suma}<br>
   Total = ${sumaFecha + r1.suma}<br><br>
-  ${divisor} ÷ ${numero} = ${r2.str}<br>
+
+  División: ${divisor} ÷ ${numero} = ${r2.str}<br>
+  Suma dígitos decimales = ${r2.suma}<br>
   Total = ${sumaFecha + r2.suma}
 `;
 
