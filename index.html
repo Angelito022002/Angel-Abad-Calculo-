@@ -219,12 +219,14 @@ let r2 = dividirYSumar(numero,1220,13,usarEnteros,false);
     Total = ${sumaFecha + r2.suma}
   `;
 
+  if (guardar) {
   guardarHistorial({
     loteria,
     fecha,
     numero,
     divisor: 1220,
     sumaFecha,
+    modoSuma: usarEnteros ? "Enteros + decimales" : "Solo decimales",
     res1: r1.str,
     suma1: r1.suma,
     total1: sumaFecha + r1.suma,
