@@ -201,6 +201,7 @@ function calcular() {
   let usarEnteros = document.getElementById("optEnteros").checked;
 let guardar = document.getElementById("optGuardar").checked;
 let usarComentario = document.getElementById("optComentario").checked;
+if (!usarComentario) comentario = "";
   if (!fecha || !numero) {
     alert("Completa los campos");
     return;
