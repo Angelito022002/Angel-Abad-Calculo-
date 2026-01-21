@@ -177,10 +177,19 @@ function sumarFecha(fecha) {
     .reduce((a,b)=>a+Number(b),0);
 }
 
-function dividirYSumar(num, divisor=1220, decimales=13, invertido=false) {
+function dividirYSumar(num, divisor=1220, decimales=13, incluirEnteros=false, invertido=false) {
   let resultado = invertido ? (num/divisor) : (divisor/num);
   let str = resultado.toFixed(decimales);
-  let suma = [...str.split(".")[1]].reduce((a,b)=>a+Number(b),0);
+
+  let partes = str.split(".");
+  let suma = 0;
+
+  if (incluirEnteros) {
+    suma += [...partes[0]].reduce((a,b)=>a+Number(b),0);
+  }
+
+  suma += [...partes[1]].reduce((a,b)=>a+Number(b),0);
+
   return {str, suma};
 }
 
