@@ -61,6 +61,29 @@
   <input type="number" id="numero" placeholder="Número (ej: 32)">
   <textarea id="comentario" placeholder="Comentario (opcional)"></textarea>
 
+  <!-- OPCIONES -->
+<div class="res">
+  <b>Opciones</b><br><br>
+
+  <!-- Tipo de suma -->
+  <label>
+    <input type="checkbox" id="optEnteros">
+    Sumar enteros + decimales
+  </label><br><br>
+
+  <!-- Guardar historial -->
+  <label>
+    <input type="checkbox" id="optGuardar" checked>
+    Guardar historial
+  </label><br><br>
+
+  <!-- Comentarios -->
+  <label>
+    <input type="checkbox" id="optComentario" checked>
+    Usar comentario
+  </label>
+</div>
+  
   <button onclick="calcular()">Calcular</button>
 
   <div class="res" id="resultado"></div>
