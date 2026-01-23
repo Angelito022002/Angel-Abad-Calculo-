@@ -223,33 +223,41 @@ label {
     <input type="number" id="divisor" value="1220">
   </label>
 </div>
-  
-  <!-- OPCIONES -->
+<!-- OPCIONES -->
 <div class="res">
   <b>Opciones</b><br><br>
 
-  <!-- Tipo de suma -->
-  <label>
-    <input type="checkbox" id="optEnteros">
-    Sumar enteros + decimales
-  </label><br><br>
+  <!-- Sumar enteros + decimales -->
+  <div class="switch-row">
+    <span>Sumar enteros + decimales</span>
+    <label class="switch">
+      <input type="checkbox" id="optEnteros">
+      <span class="slider"></span>
+    </label>
+  </div>
 
   <!-- Guardar historial -->
-  <label>
-    <input type="checkbox" id="optGuardar" checked>
-    Guardar historial
-  </label><br><br>
+  <div class="switch-row">
+    <span>Guardar historial</span>
+    <label class="switch">
+      <input type="checkbox" id="optGuardar" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
 
-  <!-- Comentarios -->
-  <label>
-    <input type="checkbox" id="optComentario" checked>
-    Usar comentario
-  </label>
+  <!-- Usar comentario -->
+  <div class="switch-row">
+    <span>Usar comentario</span>
+    <label class="switch">
+      <input type="checkbox" id="optComentario" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
 </div>
-  
-  <button onclick="calcular()">Calcular</button>
 
-  <div class="res" id="resultado"></div>
+<button onclick="calcular()">Calcular</button>
+
+<div class="res" id="resultado"></div>
 </div>
 
 <!-- VISTA HISTORIAL -->
