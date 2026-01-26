@@ -1,307 +1,475 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Programa Ángel</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programa Ángel</title>
 
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icono.PNG">
-<meta name="theme-color" content="#020617">
+  <meta name="theme-color" content="#020617">
 
-<style>
+ <style>
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+   
 :root {
-  --bg:#020617;
-  --card:#0f172a;
-  --primary:#22c55e;
-  --secondary:#38bdf8;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
+  --bg: #020617;
+  --card: #0f172a;
+  --card-dark: #020617;
+  --primary: #22c55e;
+  --secondary: #38bdf8;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
 }
 
-*{box-sizing:border-box}
-
-body{
-  font-family:Inter,system-ui,sans-serif;
-  background:radial-gradient(circle at top,#0f766e,#020617 55%);
-  color:var(--text);
-  padding:16px;
+* {
+  box-sizing: border-box;
 }
 
-.box{
-  max-width:440px;
-  margin:auto;
-  background:var(--card);
-  padding:22px;
-  border-radius:18px;
-  box-shadow:0 15px 35px rgba(0,0,0,.4);
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: radial-gradient(circle at top, #0f766e, #020617 55%);
+  color: var(--text);
+  padding: 16px;
 }
 
-.header{text-align:center;margin-bottom:20px}
-
-.logo-box{
-  width:180px;height:180px;margin:0 auto 15px;
-  border-radius:50%;
-  background:radial-gradient(circle at top,#22c55e,#0f172a);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 30px rgba(34,197,94,.7);
+.box {
+  max-width: 440px;
+  margin: auto;
+  background: var(--card);
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.4);
 }
 
-.logo-box img{
-  width:180%;height:180%;object-fit:contain;
-  filter:drop-shadow(0 0 12px rgba(0,0,0,.6));
+h1 {
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 1.4rem;
 }
 
-input,textarea{
-  width:100%;padding:14px;margin-top:10px;
-  border-radius:14px;border:1px solid rgba(255,255,255,.06);
-  background:rgba(15,23,42,.7);color:var(--text);
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 15px;
+  background: rgba(15, 23, 42, 0.7);
+  color: var(--text);
+  outline: none;
 }
 
-input:focus,textarea:focus{
-  border-color:var(--primary);
-  box-shadow:0 0 0 2px rgba(34,197,94,.25);
+input:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(34,197,94,0.25);
 }
 
-textarea{resize:vertical;min-height:70px}
-
-button{
-  background:linear-gradient(135deg,#22c55e,#38bdf8);
-  color:#022c22;font-weight:800;
-  padding:14px;border-radius:16px;
-  cursor:pointer;margin-top:14px;
-  box-shadow:0 0 25px rgba(34,197,94,.55);
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
 }
 
-button:active{transform:scale(.97)}
-
-.res{
-  margin-top:18px;
-  background:rgba(2,6,23,.75);
-  backdrop-filter:blur(10px);
-  padding:16px;border-radius:18px;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),
-             0 10px 30px rgba(0,0,0,.45);
+textarea {
+  resize: vertical;
+  min-height: 70px;
 }
 
-.res b{color:var(--secondary)}
-small{color:var(--muted)}
-
-.tabs{
-  display:flex;
-  gap:10px;
-  margin-bottom:10px;
+button {
+  background: linear-gradient(135deg, #22c55e, #38bdf8);
+  color: #022c22;
+  font-weight: 800;
+  padding: 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-top: 14px;
+  box-shadow: 0 0 25px rgba(34,197,94,0.55);
+  transition: transform .1s, box-shadow .2s;
 }
 
-.tabs button{
-  flex:1;
-  background:#1e293b;
-  color:var(--text);
-  box-shadow:none;
+button:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 15px rgba(34,197,94,0.4);
 }
 
-.tabs button.activo{
-  background:linear-gradient(135deg,#22c55e,#38bdf8);
-  color:#022c22;
-  box-shadow:0 0 20px rgba(34,197,94,.6);
+button:hover {
+  opacity: .9;
 }
 
-/* switches */
-.switch-row{
-  display:flex;justify-content:space-between;
-  align-items:center;margin:14px 0;
+button:active {
+  transform: scale(.98);
 }
 
-.switch{position:relative;width:48px;height:26px}
-.switch input{opacity:0}
-.slider{
-  position:absolute;inset:0;
-  background:#2a2f45;border-radius:30px;
-}
-.slider:before{
-  content:"";position:absolute;
-  width:20px;height:20px;
-  left:3px;top:3px;
-  background:#fff;border-radius:50%;
-  transition:.3s;
-}
-.switch input:checked+.slider{
-  background:linear-gradient(135deg,#2cff9a,#18b4ff);
-}
-.switch input:checked+.slider:before{
-  transform:translateX(22px);
+.res {
+  margin-top: 18px;
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(10px);
+  padding: 16px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 10px 30px rgba(0,0,0,0.45);
 }
 
-#vista-calc,#vista-hist{
-  animation:fade .2s ease;
+.res b {
+  color: var(--secondary);
 }
 
-@keyframes fade{
-  from{opacity:0;transform:translateY(6px)}
-  to{opacity:1;transform:none}
+small {
+  color: var(--muted);
 }
 
-#vista-hist button{
-  background:#ef4444;color:#fff;
+label {
+  font-size: 14px;
+  color: var(--text);
 }
+
+#filtros button {
+  margin-top: 8px;
+  background: #1e293b;
+  color: var(--text);
+}
+
+#filtros button:hover {
+  background: #334155;
+}
+
+#vista-hist textarea {
+  background: #020617;
+}
+
+#vista-hist button {
+  background: #ef4444;
+  color: #fff;
+  margin-top: 8px;
+}
+
+#vista-hist button:hover {
+  background: #dc2626;
+}
+.logo-box {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 20px auto;
+  border-radius: 50%;
+  background: radial-gradient(circle at top, #22c55e, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(34,197,94,0.7);
+}
+
+.logo-box img {
+  width: 180%;
+  height: 180%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(0,0,0,0.6));
+}
+
+#logo {
+  width: 200px;       /* ⬅️ aquí controlas el tamaño */
+  height: auto;
+  display: block;
+  margin: 0 auto 15px auto;
+  filter: drop-shadow(0 0 15px rgba(0,255,170,0.6));
+}
+
+/* ===== SWITCHES ===== */
+
+.switch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px 0;
+  color: #eaeaf0;
+  font-size: 14px;
+}
+
+.switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #2a2f45;
+  border-radius: 30px;
+  transition: 0.3s;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+  background: linear-gradient(135deg, #2cff9a, #18b4ff);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(22px);
+}
+   
 </style>
 </head>
 
 <body>
-<div class="box">
-
+  <div class="box">
 <div class="header">
   <h1>Programa Ángel</h1>
   <div class="logo-box">
-    <img src="icono.PNG">
+<img src="icono.PNG" alt="Logo Programa Ángel" class="logo">
+</div>
+</div>
+
+<div>
+  <button onclick="mostrarVista('calc')">Calcular</button>
+  <button onclick="mostrarVista('hist')">Historial</button>
+</div>
+
+<!-- VISTA CALCULADORA -->
+<div id="vista-calc">
+  <input type="text" id="loteria" placeholder="Lotería (ej: Real)">
+  <input type="date" id="fecha">
+  <input type="number" id="numero" placeholder="Número (ej: 32)">
+  <textarea id="comentario" placeholder="Comentario (opcional)"></textarea>
+
+  <!-- CONFIGURACIÓN -->
+<div class="res">
+  <b>Configuración</b><br><br>
+
+  <label>
+    Decimales:
+    <input type="number" id="decimales" value="13" min="1" max="20">
+  </label><br><br>
+
+  <label>
+    Divisor:
+    <input type="number" id="divisor" value="1220">
+  </label>
+</div>
+<!-- OPCIONES -->
+<div class="res">
+  <b>Opciones</b><br><br>
+
+  <!-- Sumar enteros + decimales -->
+  <div class="switch-row">
+    <span>Sumar enteros + decimales</span>
+    <label class="switch">
+      <input type="checkbox" id="optEnteros">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Guardar historial -->
+  <div class="switch-row">
+    <span>Guardar historial</span>
+    <label class="switch">
+      <input type="checkbox" id="optGuardar" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Usar comentario -->
+  <div class="switch-row">
+    <span>Usar comentario</span>
+    <label class="switch">
+      <input type="checkbox" id="optComentario" checked>
+      <span class="slider"></span>
+    </label>
   </div>
 </div>
 
-<div class="tabs">
-  <button id="btnCalc" class="activo" onclick="mostrarVista('calc')">Calcular</button>
-  <button id="btnHist" onclick="mostrarVista('hist')">Historial</button>
-</div>
-
-<!-- VISTA CALC -->
-<div id="vista-calc">
-
-<input id="loteria" placeholder="Lotería">
-<input type="date" id="fecha">
-<input type="number" id="numero" placeholder="Número">
-<textarea id="comentario" placeholder="Comentario"></textarea>
-
-<div class="res">
-<b>Configuración</b><br><br>
-Decimales <input type="number" id="decimales" value="13">
-Divisor <input type="number" id="divisor" value="1220">
-</div>
-
-<div class="res">
-<b>Opciones</b>
-
-<div class="switch-row">
-<span>Enteros + decimales</span>
-<label class="switch">
-<input type="checkbox" id="optEnteros">
-<span class="slider"></span>
-</label>
-</div>
-
-<div class="switch-row">
-<span>Guardar historial</span>
-<label class="switch">
-<input type="checkbox" id="optGuardar" checked>
-<span class="slider"></span>
-</label>
-</div>
-
-<div class="switch-row">
-<span>Usar comentario</span>
-<label class="switch">
-<input type="checkbox" id="optComentario" checked>
-<span class="slider"></span>
-</label>
-</div>
-</div>
-
 <button onclick="calcular()">Calcular</button>
+
 <div class="res" id="resultado"></div>
 </div>
 
-<!-- VISTA HIST -->
+<!-- VISTA HISTORIAL -->
 <div id="vista-hist" style="display:none">
-<div id="filtros"></div>
-<div id="historial"></div>
+  <div id="filtros"></div>
+  <div id="historial"></div>
 </div>
 
-</div>
+</div> 
 
 <script>
-function mostrarVista(v){
-  vistaCalc.style.display=v==="calc"?"block":"none";
-  vistaHist.style.display=v==="hist"?"block":"none";
-  btnCalc.classList.toggle("activo",v==="calc");
-  btnHist.classList.toggle("activo",v==="hist");
-
-  if(v==="hist"){
-    historial.innerHTML="<p style='opacity:.6'>Cargando historial...</p>";
-    setTimeout(renderHistorial,10);
-  }
+function mostrarVista(vista) {
+  document.getElementById("vista-calc").style.display = vista === "calc" ? "block" : "none";
+  document.getElementById("vista-hist").style.display = vista === "hist" ? "block" : "none";
+  if (vista === "hist") renderHistorial();
 }
 
-function obtenerHistorial(){
-  return JSON.parse(localStorage.getItem("historial_calculos")||"[]");
+// ---- HISTORIAL ----
+function obtenerHistorial() {
+  return JSON.parse(localStorage.getItem("historial_calculos") || "[]");
 }
 
-function guardarHistorial(r){
-  let h=obtenerHistorial();
-  h.push(r);
-  localStorage.setItem("historial_calculos",JSON.stringify(h));
+function guardarHistorial(registro) {
+  let historial = obtenerHistorial();
+  historial.push(registro);
+  localStorage.setItem("historial_calculos", JSON.stringify(historial));
 }
 
-function renderHistorial(f="Todas"){
-  let h=obtenerHistorial(),html="";
-  filtros.innerHTML="";
-  if(!h.length){historial.innerHTML="No hay registros";return}
-
-  ["Todas",...new Set(h.map(x=>x.loteria))].forEach(l=>{
-    filtros.innerHTML+=`<button onclick="renderHistorial('${l}')">${l}</button>`
-  });
-
-  h.filter(x=>f==="Todas"||x.loteria===f).forEach((x,i)=>{
-    html+=`
-    <div class="res">
-    <b>${x.loteria}</b> – ${x.fecha}<br><br>
-    ${x.res1} → ${x.total1}<br>
-    ${x.res2} → ${x.total2}<br><br>
-    <textarea onchange="editarComentario(${i},this.value)">${x.comentario||""}</textarea>
-    <button onclick="borrarRegistro(${i})">🗑</button>
-    </div>`
-  });
-
-  historial.innerHTML=html;
-}
-
-function borrarRegistro(i){
-  let h=obtenerHistorial();
-  h.splice(i,1);
-  localStorage.setItem("historial_calculos",JSON.stringify(h));
+function borrarRegistro(index) {
+  let historial = obtenerHistorial();
+  if (!confirm("¿Seguro que quieres borrar este registro?")) return;
+  historial.splice(index, 1);
+  localStorage.setItem("historial_calculos", JSON.stringify(historial));
   renderHistorial();
 }
 
-function editarComentario(i,v){
-  let h=obtenerHistorial();
-  h[i].comentario=v;
-  localStorage.setItem("historial_calculos",JSON.stringify(h));
+function editarComentario(index, nuevo) {
+  let historial = obtenerHistorial();
+  historial[index].comentario = nuevo;
+  localStorage.setItem("historial_calculos", JSON.stringify(historial));
 }
 
-function sumarFecha(f){return [...f].filter(n=>/\d/.test(n)).reduce((a,b)=>a+ +b,0)}
+function renderHistorial(filtro = "Todas") {
+  let historial = obtenerHistorial();
+  let cont = document.getElementById("historial");
+  let filtros = document.getElementById("filtros");
 
-function dividirYSumar(n,d,dec,ent,inv){
-  let r=(inv?n/d:d/n).toFixed(dec).split(".");
-  let s=(ent?[...r[0]]:[]).concat([...r[1]]).reduce((a,b)=>a+ +b,0);
-  return {str:r.join("."),suma:s};
+  cont.innerHTML = "";
+  filtros.innerHTML = "";
+
+  if (historial.length === 0) {
+    cont.innerHTML = "<p>No hay registros.</p>";
+    return;
+  }
+
+  let loterias = [...new Set(historial.map(h => h.loteria))];
+
+  ["Todas", ...loterias].forEach(lot => {
+    let b = document.createElement("button");
+    b.textContent = lot;
+    b.onclick = () => renderHistorial(lot);
+    filtros.appendChild(b);
+  });
+
+  historial
+    .filter(h => filtro === "Todas" || h.loteria === filtro)
+    .forEach((h, i) => {
+      cont.innerHTML += `
+        <div class="res">
+          <b>${h.loteria}</b> – ${h.fecha}<br><br>
+          <small>Modo: ${h.modoSuma}</small><br><br>
+          
+          ${h.numero} ÷ ${h.divisor} = ${h.res1}<br>
+          Total = ${h.total1}<br><br>
+
+          ${h.divisor} ÷ ${h.numero} = ${h.res2}<br>
+          Total = ${h.total2}<br><br>
+
+          Comentario:<br>
+          <textarea onchange="editarComentario(${i}, this.value)">${h.comentario || ""}</textarea>
+          <br>
+          <button onclick="borrarRegistro(${i})">🗑 Borrar</button>
+        </div>
+      `;
+    });
 }
 
-function calcular(){
-  let f=fecha.value,n=+numero.value;
-  if(!f||!n)return alert("Completa todo");
+// --- LÓGICA ---
+function sumarFecha(fecha) {
+  return [...fecha].filter(c => c >= '0' && c <= '9')
+    .reduce((a,b)=>a+Number(b),0);
+}
 
-  let sf=sumarFecha(f),
-  r1=dividirYSumar(n,divisor.value,decimales.value,optEnteros.checked,true),
-  r2=dividirYSumar(n,divisor.value,decimales.value,optEnteros.checked,false);
+function dividirYSumar(num, divisor=1220, decimales=13, incluirEnteros=false, invertido=false) {
+  let resultado = invertido ? (num/divisor) : (divisor/num);
+  let str = resultado.toFixed(decimales);
 
-  resultado.innerHTML=`Total1 ${sf+r1.suma}<br>Total2 ${sf+r2.suma}`;
+  let partes = str.split(".");
+  let suma = 0;
 
-  if(optGuardar.checked){
+  if (incluirEnteros) {
+    suma += [...partes[0]].reduce((a,b)=>a+Number(b),0);
+  }
+
+  suma += [...partes[1]].reduce((a,b)=>a+Number(b),0);
+
+  return {str, suma};
+}
+
+function calcular() {
+  let fecha = document.getElementById("fecha").value;
+  let numero = Number(document.getElementById("numero").value);
+  let decimales = Number(document.getElementById("decimales").value) || 13;
+let divisor = Number(document.getElementById("divisor").value) || 1220;
+  let loteria = document.getElementById("loteria").value || "Sin nombre";
+  let comentario = document.getElementById("comentario").value;
+  let usarEnteros = document.getElementById("optEnteros").checked;
+let guardar = document.getElementById("optGuardar").checked;
+let usarComentario = document.getElementById("optComentario").checked;
+if (!usarComentario) comentario = "";
+  if (!fecha || !numero) {
+    alert("Completa los campos");
+    return;
+  }
+
+  let sumaFecha = sumarFecha(fecha);
+  let r1 = dividirYSumar(numero, divisor, decimales, usarEnteros, true);
+  let r2 = dividirYSumar(numero, divisor, decimales, usarEnteros, false);
+
+  document.getElementById("resultado").innerHTML = `
+  Fecha → suma = ${sumaFecha}<br><br>
+
+  División: ${numero} ÷ ${divisor} = ${r1.str}<br>
+  Suma dígitos decimales = ${r1.suma}<br>
+  Total = ${sumaFecha + r1.suma}<br><br>
+
+  División: ${divisor} ÷ ${numero} = ${r2.str}<br>
+  Suma dígitos decimales = ${r2.suma}<br>
+  Total = ${sumaFecha + r2.suma}
+`;
+
+    if (guardar) {
     guardarHistorial({
-      loteria:loteria.value||"Sin nombre",
-      fecha:f,res1:r1.str,res2:r2.str,
-      total1:sf+r1.suma,total2:sf+r2.suma,
-      comentario:optComentario.checked?comentario.value:""
+      loteria,
+      fecha,
+      numero,
+      divisor,
+      decimales,
+      sumaFecha,
+      modoSuma: usarEnteros ? "Enteros + decimales" : "Solo decimales",
+      res1: r1.str,
+      suma1: r1.suma,
+      total1: sumaFecha + r1.suma,
+      res2: r2.str,
+      suma2: r2.suma,
+      total2: sumaFecha + r2.suma,
+      comentario
     });
   }
-}
+} 
 </script>
 </body>
 </html>
